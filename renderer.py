@@ -14,7 +14,7 @@ class TextRenderer:
     
     def render_cell(self, sudoku, cell):
         if self._draw_possibilities:
-            return ''.join(sudoku.possibilities(cell))
+            return ''.join(sudoku.possibilities(cell)) or 'X'
         else:
             return sudoku.at(cell, self._placeholder)
   
