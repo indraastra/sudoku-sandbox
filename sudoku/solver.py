@@ -101,19 +101,18 @@ class Solver:
     renderer = renderer or self.default_renderer
     for move in self.moves():
       ok = self._sudoku.try_assign(*move)
-      if not ok:
-        self.backtrack(move)
-
-      if self._verbose:
-        if ok:
+      if ok:
+        if self._verbose:
           print('Found move: ', move)
           print(renderer.render(self._sudoku))
-        else:
-          print('Made bad move: ', move)
+      else:
+        print('Made bad move: ', move)
+        self.backtrack(move)
 
     if self._sudoku.is_solved():
       if self._verbose:
         print('Solved!')
+        print('Used guesses:', [c[1] for c in self._checkpoints])
       return True
     else:
       if self._verbose:

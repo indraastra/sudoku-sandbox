@@ -50,6 +50,7 @@ class Sudoku:
     Assigns `value` to `cell` if possible without raising a contradiction.
     """
     sudoku = self.clone()
+    sudoku.set_verbose(False)
     try:
       sudoku.assign(cell, value)
       self.assign(cell, value)  # It's safe.
